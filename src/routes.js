@@ -54,6 +54,12 @@ module.exports = {
       component: function(resolve){
         require(['./demos/iscroll.vue'], resolve);
       }
+    },
+    {
+      path:'/toast',
+      component: function(resolve){
+        require(['./demos/toast.vue'], resolve);
+      }
     }
   ]
 }

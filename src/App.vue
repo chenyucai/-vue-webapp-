@@ -2,10 +2,10 @@
     <div class="views" id="app">
       <div class="view">
         <div class="header">
-            <!-- <router-link to="/about">about</router-link>
+            <router-link to="/about">about</router-link>
             <router-link to="/hello">hello</router-link>
             <router-link to="/home">home</router-link>
-            <button @click="showLoading">点我</button> -->
+            <button @click="showLoading">点我</button>
             <!-- <div class="page__bd page__bd_spacing">
                 <a href="javascript:;" class="weui-btn weui-btn_default" @click="showPicker">{{value}}</a>
                 <a href="javascript:;" class="weui-btn weui-btn_default" @click="showDatePicker">{{date}}</a>
@@ -21,6 +21,9 @@
             </router-link>
             <router-link to="/iscroll">
               <a href="javascript:;" class="weui-btn weui-btn_default">iscroll</a>
+            </router-link>
+            <router-link to="/toast">
+              <a href="javascript:;" class="weui-btn weui-btn_default">toast</a>
             </router-link>
         </div>
         <!-- <div class="weui_cells">
@@ -96,6 +99,8 @@ export default {
     'action-sheet': ActionSheet
   },
   created: function() {
+    console.log(this.id);
+    // console.log(document.getElementById('iddfsfs'));
     // var lazyloadImg = new LazyloadImg({
     //   el: '[data-src]', //匹配元素
     //   top: 50, //元素在顶部伸出长度触发加载机制
@@ -161,8 +166,8 @@ export default {
     showLoading:function () {
       console.log(1);
       // this.$root.loading.show = true;
-      // this.$root.alert.show=true;
-      // this.$root.alert.content = 'sfdasdfsfds'
+      this.$root.alert.show=true;
+      this.$root.alert.content = 'sfdasdfsfds'
       // this.$root.successToast.show = true;
       // this.$root.alertDialog.show = true;
       // this.$root.alertDialog.content = 'ldsflsjlfjslkj';
