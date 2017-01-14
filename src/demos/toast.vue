@@ -36,7 +36,6 @@ export default {
         content:'的酸辣粉拉萨减肥了',
         cancel:function(){
           console.log(1);
-          // alert(2)
         },
         confirm:function(){
           console.log(2);
