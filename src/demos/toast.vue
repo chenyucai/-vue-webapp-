@@ -32,7 +32,7 @@ export default {
     },
     showModal:function(){
       Catty.showModal({
-        showCancel:false,
+        // showCancel:false,
         content:'的酸辣粉拉萨减肥了',
         cancel:function(){
           console.log(1);
