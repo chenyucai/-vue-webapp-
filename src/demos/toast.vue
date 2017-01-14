@@ -4,6 +4,7 @@
       <a href="javascript:;" class="weui-btn weui-btn_default" @click="showToast">显示toast</a>
       <a href="javascript:;" class="weui-btn weui-btn_default" @click="showModal">显示modal</a>
       <a href="javascript:;" class="weui-btn weui-btn_default" @click="showActionSheet">显示actionSheet</a>
+      <a href="javascript:;" class="weui-btn weui-btn_default" @click="showAlert">显示alert</a>
     </div>
   </div>
 </template>
@@ -32,6 +33,7 @@ export default {
     showModal:function(){
       Catty.showModal({
         // showCancel:false
+        content:'的酸辣粉拉萨减肥了',
         cancel:function(){
           console.log(1);
           // alert(2)
@@ -48,6 +50,9 @@ export default {
           alert(index)
         }
       });
+    },
+    showAlert:function(){
+      Catty.alert('但是老骥伏枥撒娇法律界撒疯了');
     }
   }
 }

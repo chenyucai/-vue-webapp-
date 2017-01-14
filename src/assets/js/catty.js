@@ -100,12 +100,74 @@ function getDate(offset){
   return yy+ '-' + preZero(mm) + '-' + preZero(dd);
 }
 
+function alert(content,duration){
+  this.content = content;
+  this.duration = duration || 2000;
+  this.css = 'position: fixed;z-index: 13000;top: 0;right: 0;left: 0;';
+  this.inCss = '-webkit-animation: fadeIn .5s ease 0.2s 1 both;animation: fadeIn .5s ease 0.2s 1 both;'; //入场动画，暂只支持animation
+  this.outCss = '-webkit-animation: fadeOut .5s ease 0.2s 1 both;animation: fadeOut .5s ease 0.2s 1 both;';//退场动画，暂只支持animation
+  this.init = function (){
+    this.createAlert();
+    var _this = this;
+    // 监听hashchange，适用于单页应用
+    window.addEventListener('hashchange', function(){
+      var alert = document.getElementById('CATTY-ALERT');
+      if (alert) {
+        alert.parentNode.removeChild(alert);
+      }
+    }, false);
+    // 移除 alert
+    setTimeout(function(){
+      _this.removeAlert();
+    },this.duration);
+  };
+  /**
+   * 创建 alert
+   */
+   this.createAlert = function(){
+     var alert = document.getElementById('CATTY-ALERT');
+     if (alert) {
+         return false; //已经创建了alert
+     }
+     alert = document.createElement('div');
+     alert.id = 'CATTY-ALERT';
+     alert.style.cssText = this.css + this.inCss;
+     alert.innerHTML = '<div class="weui-mask_transparent" style="z-index:13000;"></div>'+
+     '<div class="weui-toast_ruochu catty-alert">'+
+         '<p class="weui-toast__content_ruochu catty-alert-content">'+this.content+'</p>'+
+     '</div>';
+     alert.querySelector('.catty-alert').style.cssText = 'position: fixed;z-index: 13500;width: 100%;top: 35%;left: 0;text-align: center;color: #fff;';
+     alert.querySelector('.catty-alert-content').style.cssText = 'display: inline-block;background: rgba(40,40,40,.75);border-radius: 5px;padding: 10px 15px;max-width: 260px;font-size: 15px;min-width:100px;';
+     document.body.appendChild(alert);
+     alert.ontouchstart = function (e) { // 禁止触摸穿透
+       e.stopPropagation();
+     };
+   };
+   /**
+    *  删除 alert
+    */
+   this.removeAlert = function(){
+     var alert = document.getElementById('CATTY-ALERT');
+
+     if (alert) {
+       alert.style.cssText = this.css + this.outCss;
+       alert.addEventListener('animationend', function(){
+         alert.parentNode.removeChild(alert);
+       }, false);
+       alert.addEventListener('webkitAnimationEnd', function(){
+         alert.parentNode.removeChild(alert);
+       }, false);
+     }
+   };
+   this.init();
+}
+
 function showToast(myset) {
   this.title = '加载中'; //提示的内容
   this.type = 'loading'; //只支持"success"、"loading",默认是loading
   this.duration = 1500; //提示的延迟时间，单位毫秒，默认：1500, loading类型时无效
   this.success = null;
-  this.toastCss = 'position: fixed;z-index: 13000;top: 0;right: 0;left: 0;transition:all .2s';
+  this.toastCss = 'position: fixed;z-index: 13000;top: 0;right: 0;left: 0;';
   this.inCss = '-webkit-animation: fadeIn .5s ease 0.2s 1 both;animation: fadeIn .5s ease 0.2s 1 both;'; //入场动画，暂只支持animation
   this.outCss = '-webkit-animation: fadeOut .5s ease 0.2s 1 both;animation: fadeOut .5s ease 0.2s 1 both;';//退场动画，暂只支持animation
 
@@ -204,7 +266,7 @@ function showModal(opts){
   this.confirmColor = '#ff718b'; //确定按钮的文字颜色，默认为"#ff718b"
   this.confirm = null; //点击确认后回调函数
   this.cancel = null; //点击取消后回调函数
-  this.modalCss = 'position: fixed;z-index: 13000;top: 0;right: 0;left: 0;transition:all .2s';
+  this.modalCss = 'position: fixed;z-index: 13000;top: 0;right: 0;left: 0;';
   this.inCss = '-webkit-animation: fadeIn .3s ease 0.2s 1 both;animation: fadeIn .3s ease 0.2s 1 both;'; //入场动画，暂只支持animation
   this.outCss = '-webkit-animation: fadeOut .3s ease 0.2s 1 both;animation: fadeOut .3s ease 0.2s 1 both;';//退场动画，暂只支持animation
 
@@ -392,5 +454,6 @@ module.exports = {
   showToast:showToast,
   hideToast:hideToast,
   showModal:showModal,
-  showActionSheet:showActionSheet
+  showActionSheet:showActionSheet,
+  alert:alert
 }

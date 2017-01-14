@@ -23,7 +23,7 @@
               <a href="javascript:;" class="weui-btn weui-btn_default">iscroll</a>
             </router-link>
             <router-link to="/toast">
-              <a href="javascript:;" class="weui-btn weui-btn_default">toast</a>
+              <a href="javascript:;" class="weui-btn weui-btn_default">toast/alert/modal/actionsheet</a>
             </router-link>
         </div>
         <!-- <div class="weui_cells">
