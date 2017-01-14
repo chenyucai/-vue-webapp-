@@ -52,7 +52,7 @@ export default {
       });
     },
     showAlert:function(){
-      Catty.alert('但是老骥伏枥撒娇法律界撒疯了');
+      Catty.alert('但是老骥伏枥');
     }
   }
 }
