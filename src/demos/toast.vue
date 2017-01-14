@@ -52,7 +52,7 @@ export default {
       });
     },
     showAlert:function(){
-      Catty.alert('但是老骥伏枥');
+      Catty.alert('但是老骥伏');
     }
   }
 }
